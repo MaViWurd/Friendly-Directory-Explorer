@@ -5,7 +5,7 @@ hidden_dir="$HOME/.my_hidden_dir"
 mkdir -p "$hidden_dir"
 
 # Copy the program.py file to the hidden directory
-cp program.py "$hidden_dir/changedir.py"
+cp program/program.py "$hidden_dir/changedir.py"
 
 # Create the cdir file
 cdir_file="$hidden_dir/cdir"
