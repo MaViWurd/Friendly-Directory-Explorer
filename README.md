@@ -10,18 +10,18 @@ cdir is a simple and interactive command line tool for navigating through direct
 ## Installation
 To install cdir, run the following command in the terminal:
 
-'''
+
 ./install_cdir
-'''
+
 
 This will create a hidden directory in your system, copy the necessary files and make cdir globally accessible. The script will also install required packages if they are not already installed on your system.
 
 ## Usage
 To use cdir, simply run the following command in the terminal:
 
-'''
+
 cdir
-'''
+
 
 This will open the directory navigator and allow you to easily switch between directories. Use the number of the desired directory to navigate to it or use 'b' to go back to the parent directory. Type 'q' to exit the program.
 
