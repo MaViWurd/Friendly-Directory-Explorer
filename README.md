@@ -30,3 +30,6 @@ This project is open to contributions from the community. If you have ideas for 
 
 ## License
 This project is licensed under the MIT License.
+
+## Author
+[Egbe Marvelous](https://github.com/MaViWurd/)
