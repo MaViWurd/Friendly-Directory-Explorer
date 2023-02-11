@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 def install_termcolor():
     try:
@@ -61,6 +62,10 @@ def main():
             except ValueError:
                 print("Invalid input.")
         path = os.getcwd()
+
+    # Set the new working directory before launching a new shell
+    os.chdir(path)
+    os.system("bash")
 
 if __name__ == '__main__':
     main()
