@@ -1,6 +1,10 @@
+import time
 import os
 import subprocess
 import sys
+import readline
+import termios
+import tty
 
 def install_termcolor():
     try:
@@ -35,24 +39,42 @@ def back_dir(path):
     os.chdir(os.path.dirname(path))
     print(f"Successfully changed to directory {os.getcwd()}")
 
+def getch():
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        user_input = sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    if user_input.isdigit():
+        return ('number', int(user_input))
+    else:
+        return ('char', user_input)
+
 def main():
     path = os.getcwd()
     while True:
         os.system('clear')
-        print(colored(f"Current directory: {path}", 'yellow'))
+        print("+-----------------+")
+        print("| Current Directory |")
+        print("+-----------------+")
+        print(colored(f"{os.getcwd()}\n", 'yellow'))
         print("\nSubdirectories:")
         dirs = list_dirs(path)
         for i, d in enumerate(dirs):
             print(f"{i + 1}. {d}")
         print("\nEnter the number of the directory you want to navigate to,")
-        print(colored("'b' to navigate to the parent directory,", 'red'))
-        print(colored("'q' to quit:", 'red'))
-        user_input = input()
-        if user_input == 'q':
-            break
-        elif user_input == 'b':
-            back_dir(path)
-        else:
+        print(colored("'b' or 'B' to navigate to the parent directory,", 'red'))
+        print(colored("'q' or 'Q' to quit:", 'red'))
+        user_input = input().strip()
+        user_input = user_input.lower()
+        if user_input in ['q', 'b']:
+            if user_input == 'b':
+                back_dir(path)
+            else:
+                break
+        elif user_input.isdigit():
             try:
                 choice = int(user_input)
                 if 1 <= choice <= len(dirs):
